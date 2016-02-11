@@ -18,5 +18,8 @@ public class TypeLiteralModule extends AbstractModule {
         }).toInstance(new ArrayList<Integer>() {{
             add(123);
         }});
+
+        bind(new TypeLiteral<MyGenericService<Integer>>(){}).to(MyIntegerService.class);
+        bind(new TypeLiteral<MyGenericService<Double>>(){}).to(MyDoubleService.class);
     }
 }

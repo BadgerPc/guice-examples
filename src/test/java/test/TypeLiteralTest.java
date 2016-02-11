@@ -3,6 +3,7 @@ package test;
 import com.google.inject.Guice;
 import org.junit.Before;
 import org.junit.Test;
+import typeliteral.MyGenericService;
 import typeliteral.TypeLiteralModule;
 
 import javax.inject.Inject;
@@ -17,6 +18,10 @@ public class TypeLiteralTest {
     List<String> stringList;
     @Inject
     List<Integer> integerList;
+    @Inject
+    MyGenericService<Integer> integerService;
+    @Inject
+    MyGenericService<Double> doubleService;
 
     @Before
     public void setUp() throws Exception {
@@ -31,5 +36,15 @@ public class TypeLiteralTest {
     @Test
     public void integerListShouldContainsHello() throws Exception {
         assertThat(integerList.get(0), is(123));
+    }
+
+    @Test
+    public void integerServiceShouldReturn123() throws Exception {
+        assertThat(integerService.get(), is(123));
+    }
+
+    @Test
+    public void doubleServiceShouldReturn0_5() throws Exception {
+        assertThat(doubleService.get(), is(0.5));
     }
 }
